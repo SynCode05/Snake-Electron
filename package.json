@@ -11,5 +11,8 @@
   },
   "scripts": {
     "start": "electron ."
+  },
+  "dependencies": {
+    "deps-install": "^0.2.2"
   }
 }
