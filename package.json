@@ -13,6 +13,7 @@
     "start": "electron ."
   },
   "dependencies": {
+    "@electron/remote": "^2.0.8",
     "deps-install": "^0.2.2"
   }
 }

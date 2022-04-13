@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require("electron");
+require('@electron/remote/main').enable(BrowserWindow);
 const path = require('path');
 
 const createWindow = () => {
@@ -8,11 +9,15 @@ const createWindow = () => {
         maxWidth: 700,
         minWidth: 400,
         minHeight: 400,
+        frame: false,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.ts')
+            preload: path.join(__dirname, 'preload.ts'),
+            nodeIntegration: true,
+            contextIsolation: false,
         }
     });
 
+    win.removeMenu();
     win.maximize();
     win.show();
 
@@ -24,7 +29,6 @@ const createWindow = () => {
 app.whenReady().then(() => {
 
    createWindow();
-//    window.localStorage.getItem()
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()

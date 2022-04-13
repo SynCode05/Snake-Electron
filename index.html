@@ -2,12 +2,22 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="snakeGame.js"></script>  
+    <script type="text/javascript" src="./snakeGame.js"></script>  
 </head>
 <body>
-    Score: <span id="score"></span>
-    Highscore <span id="highscore"></span>
     <div class=game-board></div>
-    <input type="button" value="click" class=reset onclick="reset()"/>
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <h1>Score:</h1> <span id="score"></span>
+            <h1>Highscore:</h1> <span id="highscore"></span>
+            <br>
+            <input type="button" value="Reset" class="reset" onclick="reset()"/>
+            <input type="button" value="Exit" class="exit" onclick="window.close()"/>
+        </div> 
+    </div>
+    <div id="startModal" class="modal">
+        <input type="button" value="Start" class="start" onclick="startGame()"/>
+        <input type="button" value="Exit" class="exit" onclick="window.close()"/>
+    </div>
 </body>
 </html>
