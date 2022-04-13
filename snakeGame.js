@@ -16,7 +16,7 @@ const replaceText = (selector, text) => {
 function reset() {
     document.getElementById("resetModal").style.display = "none";
     score = 0;
-    currentSnake = [41, 42];
+    currentSnake = [42, 41];
     let random = Math.floor(Math.random() * 100);
     while (currentSnake.includes(random)) random = Math.floor(Math.random() * 100);
 
@@ -58,16 +58,16 @@ function checkKey(e) {
 
     switch (keyCode) {
         case 87 || 38: //w
-            direction = -width
+            if(direction !== +width) direction = -width;
             break;
         case 65 || 37: //a
-            direction = -1
+            if(direction !== 1) direction = -1
             break;
         case 83 || 40: //s
-            direction = +width
+            if(direction !== -width)direction = +width
             break;
         case 68 || 39: //d
-            direction = 1
+            if(direction !== -1)direction = 1
           break;
     };
 };
@@ -89,11 +89,13 @@ async function moveOutcome() {
 };
 
 function checkForHits(squares) {
+    console.log(currentSnake);
     if (
       (edgeR.includes(currentSnake[0]) && direction === 1) ||
       (edgeL.includes(currentSnake[0])  && direction === -1) ||
       ((currentSnake[0] + width) > 99 && direction === +width) ||
-      (currentSnake[0] - width < 0 && direction === -width) 
+      (currentSnake[0] - width < 0 && direction === -width) || 
+      (squares[(currentSnake[0]) + direction].classList.contains("snake"))
     ) {
         return true;
     } else {
